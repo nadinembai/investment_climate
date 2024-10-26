@@ -1,0 +1,505 @@
+---
+title: "Untitled"
+author: "Rox"
+date: '2024-09-29'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+summary(Data_AOF)
+```
+
+## Extraire les données de l'Afrique de l'Ouest
+```{r}
+library(dplyr)
+
+# Pour voir les modalités de Recipient
+unique (Sda_Afriq$Recipient)
+
+# Pour sélectionner les pays de l'Afrique de l'ouest
+Aof<-Sda_Afriq%>%
+  filter(Recipient %in% c("Burkina Faso", "Côte d'Ivoire", "Guinea", "Senegal",  "Benin", "Mali", "Niger", "Guinea-Bissau", "Togo"))
+
+summary(Aof)
+```
+## Fichier de Reine dans github
+
+```{r}
+# voir le nom des variables
+names (Data_AOF)
+
+# convertir en facteur
+
+Data_AOF$'Provider Type' <- as.factor(Data_AOF$'Provider Type')
+Data_AOF$Provider<- as.factor(Data_AOF$Provider)
+Data_AOF$'Provider (detailed)'<- as.factor(Data_AOF$'Provider (detailed)')
+Data_AOF$'Agency Code'<- as.factor(Data_AOF$'Agency Code')
+Data_AOF$'Extending Agency'<- as.factor(Data_AOF$'Extending Agency')
+Data_AOF$'CRS Identification N°'<- as.factor(Data_AOF$'CRS Identification N°')
+Data_AOF$'Donor project N°'<- as.factor(Data_AOF$'Donor project N°')
+Data_AOF$Recipient<- as.factor(Data_AOF$Recipient)
+Data_AOF$'Sector (detailed)'<- as.factor(Data_AOF$'Sector (detailed)')
+Data_AOF$'Sub-sector'<- as.factor(Data_AOF$'Sub-sector')
+Data_AOF$'Financial Instrument'<- as.factor(Data_AOF$'Financial Instrument')
+Data_AOF$'Climate objective (applies to Rio-marked data only) or climate component'<- as.factor(Data_AOF$'Climate objective (applies to Rio-marked data only) or climate component')
+Data_AOF$'Recipient Income Group (OECD Classification)'<- as.factor(Data_AOF$'Recipient Income Group (OECD Classification)')
+Data_AOF$'Concessionality'<- as.factor(Data_AOF$'Concessionality')
+Data_AOF$'Climate objective (applies to Rio-marked data only) or climate component'<- as.factor(Data_AOF$'Climate objective (applies to Rio-marked data only) or climate component')
+Data_AOF$'Adaptation objective (applies to Rio-marked data only)'<- as.factor(Data_AOF$' Adaptation objective (applies to Rio-marked data only)')
+Data_AOF$'Development Cooperation Modality'<- as.factor(Data_AOF$'Development Cooperation Modality')
+
+
+summary(Data_AOF)
+```
+
+```{r}
+library(dplyr)
+sector_na <- Data_AOF %>% 
+  filter('Sector (detailed)' != "", !is.na('Sector (detailed)'))
+```
+
+
+```{r}
+is.null(Data_AOF$Gender)
+is.na(Data_AOF$Gender)
+A <- c(1, 2, 3)
+A[2]
+A[c(T, F, T)]
+Data_AOF$Gender[!is.na(Data_AOF$Gender)]
+
+#Pour abandonner les lignes vides
+library(tidyr)
+Aof<- Data_AOF %>% 
+  drop_na()
+summary(Aof)
+
+# Exporter la dataset
+library(openxlsx)
+write.xlsx(Aof, file = "Aof.xlsx")
+
+
+#Voir le nombre et pourcentage de données manquantes
+#install.packages("funModeling")
+library(funModeling)
+Na <- df_status(Data_AOF)
+Na
+```
+
+
+
+```{r}
+#renommer une variable
+
+names(Data_AOF)[names(Data_AOF) == "Sector (detailed)"] <- "Sector"
+
+```
+
+
+## Making a map with "Adaptation of 2021" for AOF
+```{r}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+names (Data_AOF)
+
+# Pour sélectionner des modalités au sein de la variable, 
+wate<- Data_AOF%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(wate)
+
+wat_adapt <- filter(wate, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+names(wat_adapt)[names(wat_adapt) == "Recipient"] <- "region"
+names(wat_adapt)[names(wat_adapt) == "Adaptation-related development finance - Commitment - 2021 USD thousand"] <- "Adaption"
+
+wat_adaptf <- left_join(worldgood, wat_adapt, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+wat_adapf <- wat_adaptf %>% 
+  drop_na(c(Adaption))
+
+wat_adaf <- filter(wat_adapf, "Adaption" > 0)
+
+summary(wat_adaf$Adaption)
+
+ggplot(data = wat_adaf, aes(x = long, y = lat, group = group, fill = Adaption)) + 
+ theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+  scale_fill_continuous(high = "#00AFBB"  , low = "#CDB79E") +
+  labs(title = "Finance relative to water adaptation 2021",
+        caption = "Source: Nüance-R")
+```
+
+
+
+## Making a map with "Mitigation of 2021" for AOF
+```{r}
+
+wat_mitig <- filter(wate, "Mitigation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+names(wat_mitig)[names(wat_mitig) == "Recipient"] <- "region"
+names(wat_mitig)[names(wat_mitig) == "Mitigation-related development finance - Commitment - 2021 USD thousand"] <- "Mitigation"
+
+wat_mitigf <- left_join(worldgood, wat_mitig, by = "region")
+
+# Pour enlever les lignes vides de la variable Mitigation
+library(tidyr)
+wat_mitif <- wat_mitigf %>% 
+  drop_na(c(Mitigation))
+
+#wat_mitif <- filter(wat_mitif, "Mitigation" > 0)
+
+summary(wat_mitif$Mitigation)
+
+ggplot(data = wat_mitif, aes(x = long, y = lat, group = group, fill = Mitigation)) + 
+ theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+  scale_fill_continuous(high = "#00AFBB"  , low = "#CDB79E") +
+  labs(title = "Finance relative to water adaptation 2021",
+        caption = "Source: Nüance-R")
+```
+
+# Réalisation de line chart pour "Adaptation"
+```{r}
+plot1= ggplot(data=wat_adaf, aes(x=Year,y=Adaption,color=region)) +
+geom_line(size=1.5) +
+xlab("") +
+ylab("Adaptation-related development finance - Commitment - 2021 USD thousand") +
+labs(fill="Country") +
+theme_minimal()+
+theme(legend.position = "right")
+#scale_color_brewer(direction=-1)
+
+plot1
+``` 
+
+# Réalisation de line chart pour "Mitigation"
+```{r}
+plot2= ggplot(data=wat_mitif, aes(x=Year,y=Mitigation,color=region)) +
+geom_line(size=1.5) +
+xlab("") +
+ylab("Mitigation-related development finance - Commitment - 2021 USD thousand") +
+labs(fill="Country") +
+theme_minimal()+
+theme(legend.position = "right")
+
+plot2
+```
+
+
+## To have data for 2021
+```{r}
+# Extraire les données pour plusieurs pays et uen seule année
+library(dplyr)
+Finance <- Data_AOF %>%
+  filter(Recipient %in% c("Benin", "Burkina Faso","Côte d'Ivoire", "Guinea", "Guinea-Bissau", "Mali", "Niger", "Senegal", "Togo"), Year ==2021)
+
+#Pour abandonner les lignes vides
+library(tidyr)
+Financ<- Finance %>% 
+  drop_na()
+summary(Financ)
+
+# Exporter la dataset
+library(openxlsx)
+write.xlsx(Finance, file = "Finance.xlsx")
+write.xlsx(Financ, file = "Financ.xlsx")
+```
+
+
+# Données seulement de 2021
+## Making a map with "Adaptation of 2021" for AOF
+
+```{r}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+names (Finance)
+
+#renommer une variable
+names(Finance)[names(Finance) == "Sector (detailed)"] <- "Sector"
+
+#names(wat_mitig)[names(wat_mitig) == "Recipient"] <- "region"
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_finance <- filter(watfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+names(wat_finance)[names(wat_finance) == "Recipient"] <- "region"
+names(wat_finance)[names(wat_finance) == "Adaptation-related development finance - Commitment - 2021 USD thousand"] <- "Adaption"
+
+wat_finanf <- left_join(worldgood, wat_finance, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+wat_finan_f <- wat_finanf %>% 
+  drop_na(c(Adaption))
+
+wat_finan_f <- filter(wat_finan_f, "Adaption" > 0)
+
+summary(wat_finan_f$Adaption)
+
+ggplot(data = wat_finan_f, aes(x = long, y = lat, group = group, fill = Adaption)) + theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+  scale_fill_continuous(high = "#00AFBB"  , low = "#CDB79E") +
+  labs(title = "Finance relative to water adaptation 2021",
+        caption = "Source: Nüance-R")
+```
+
+## Making a map with "Mitigation of 2021" for AOF
+
+```{r}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+names (Finance)
+
+#renommer une variable
+names(Finance)[names(Data_AOF) == "Sector (detailed)"] <- "Sector"
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_mit <- filter(watfi, "Mitigation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+names(wat_mit)[names(wat_mit) == "Recipient"] <- "region"
+names(wat_mit)[names(wat_mit) == "Mitigation-related development finance - Commitment - 2021 USD thousand"] <- "Mitigation"
+
+wat_mitf <- left_join(worldgood, wat_mit, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+wat_mit_f <- wat_mitf %>% 
+  drop_na(c(Mitigation))
+
+wat_mitff <- filter(wat_mit_f, "Mitigation" > 0)
+
+summary(wat_mitff$Mitigation)
+
+ggplot(data = wat_mitff, aes(x = long, y = lat, group = group, fill = Mitigation)) +
+ theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black") +
+  scale_fill_continuous(high = "#00AFBB"  , low = "#7570B3") +
+  labs(title = "Finance relative to water Mitigation 2021",
+        caption = "Source: Nüance-R")
+
+## autres tests
+plot1= ggplot(wat_mit_f, aes(x = long, y = lat)) +
+  geom_polygon(aes( group = group, fill = region))+
+  geom_text(aes(label = region), data = wat_mit_f,  size = 3, hjust = 0.5)+
+  scale_fill_viridis_d()+
+  theme_void()+
+  theme(legend.position = "right")+
+labs(title = "Finance relative to water Mitigation 2021",
+        caption = "Source: Nüance-R")
+
+plot1 <- plot1 + geom_label(
+  data = wat_mit_f,
+  mapping = aes(label = region),
+  color = "red",
+  size = 3,
+  label.size = 0.1,
+  label.r = grid::unit(0, "lines")
+)
+```
+
+## Histogramme barres empilées par pays de l'AOF
+```{r}
+library(ggplot2)
+
+ggplot(data= Finance, aes(x = Recipient, fill = 'Provider type')) +
+  geom_bar(position = "stack") +
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence",
+       fill = "Provider type") +
+  theme_minimal()
+```
+## Histogramme barre côte à côte
+
+```{r}
+ggplot(data= Finance, aes(x = Recipient, fill = 'Provider type')) +
+  geom_bar(position = "dodge") +
+  labs(title = "Histogramme de deux variables qualitatives",
+       x = "Variable 1",
+       y = "Count",
+       fill = "Variable 2") +
+  theme_minimal()
+```
+
+## Histogramme pour mitigation eau (PTF en fonction de pays)
+```{r}
+#renommer une variable
+names(Finance)[names(Finance) == "Sector (detailed)"] <- "Sector"
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_mit <- filter(watfi, "Mitigation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+library(ggplot2)
+
+ggplot(data= wat_mit, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "stack") +
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence ",
+       fill = "Provider type") +
+  theme_minimal()
+```
+
+## Histogramme pour mitigation eau (fonds octroyés en fonction de PTF)
+
+```{r}
+#renommer une variable
+names(Finance)[names(Data_AOF) == "Sector (detailed)"] <- "Sector"
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_mit <- filter(watfi, "Mitigation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+library(ggplot2)
+
+ggplot(data= wat_mit, aes(x = 'Provider type', fill = region)) +
+  geom_bar(position = "stack") +
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Partenaires techniques et financiers",
+       y = "Fonds pour la mitigation de l'eau ",
+       fill = "region") +
+  theme_minimal()
+```
+## Histogramme pour adaptation eau (fonds octroyés en fonction de PTF)
+
+```{r}
+#renommer une variable
+names(Finance)[names(Data_AOF) == "Sector (detailed)"] <- "Sector"
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_finance <- filter(watfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+library(ggplot2)
+
+ggplot(data= wat_finance, aes(x = 'Provider type', fill = region)) +
+  geom_bar(position = "stack") +
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Partenaires techniques et financiers",
+       y = "Fonds pour l'adaption de l'eau ",
+       fill = "region") +
+  theme_minimal()
+```
+## Histogramme pour adaptation eau (PTF en fonction de pays)
+
+```{r}
+#renommer une variable
+names(Finance)[names(Finance) == "Sector (detailed)"] <- "Sector"
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_finance <- filter(watfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+library(ggplot2)
+
+ggplot(data= wat_finance, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "stack") +
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence ",
+       fill = "Provider type") +
+  theme_minimal()
+```
+
+## Histogramme test
+
+```{r}
+ggplot(data=wat_finance, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "dodge", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence") +
+  theme_minimal()
+```
+cours 1 séance 4
+```{r}
+# wat_finance$region <- as.character(wat_finance$)
+library(ggthemes)
+
+ggplot(data=wat_finance, aes(x = region, fill = 'Provider type')) +
+  geom_bar( width = 0.5, position = "dodge")+
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence") +
+  theme_minimal()+ 
+  scale_fill_brewer(direction = -1)
+```
+
