@@ -1,0 +1,846 @@
+---
+title: "Rapport"
+author: "The Queens"
+date: '2024-10-16'
+output:
+  word_document: default
+  toc: true  
+  number_sections: yes          
+  toc_depth: 3
+bibliography: C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Sda.bib
+csl: apa-6th-edition.csl
+header-includes: 
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[C]{The Queens}  
+  - \fancyfoot[R]{\thepage}       
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T)
+#knitr::opts_chunk$set(comment = F)
+```
+
+
+```{r, include=FALSE}
+library(RefManageR)
+biblio <- ReadBib("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Sda.bib")
+```
+
+# 1. Thème du Projet: Analyse du financement climatique en Afrique 
+
+```{r, echo=FALSE, warning= FALSE, message=FALSE}
+#install.packages("magick")
+library(magick)
+Sda <- image_read("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Sda.jpeg")
+Agricultural <- image_read("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Agricultural.jpg")
+Eau<- image_read ("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Water.jpg")
+Energie<- image_read ("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Energy-Programs.jpg")
+Environnement <- image_read("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Protection.jpg")
+
+print(Sda)
+print(Agricultural)
+print(Eau)
+print(Energie)
+print(Environnement)
+```
+
+
+# Réalisé par The Queens:
+ASSOGBA Roxène  
+MOGODE Nadine  
+OLANIGNAN Reine  
+ZANOU Murielle  
+
+# Plan de Rédaction des Projets d'Équipe SDA
+
+
+
+# 2. Contexte et Justification du Projet 
+ 
+L’accord de Paris prévoit de parvenir à la « neutralité carbone »  d’ici 2050 et contenir le réchauffement global en dessous de 2°C des niveaux préindustrielles d’ici 2100.  
+Lors de cet évènement climatique, les pays africains ont exprimé leurs aspirations audacieuses à construire des économies résilientes au changement climatique et à faible émission de carbone à travers leurs Contributions Déterminées Nationales (CDN) [@fccaAiderLAfriqueAcceder2018]. Pour mener à bien, les différentes actions d’adaptation et d’atténuation aux changements climatiques, ces états africains doivent mobiliser de financements considérables. 
+Beaucoup de progrès ont été accomplis pour mobiliser davantage de financements climatiques – les principaux donateurs sont la (Comité d'Aide au Développement) DAC member, les banques multilatérales et les ONG. Toutefois, le financement climatique alloué au continent africain demeure largement inférieur aux besoins estimés. Cette étude analyse l’évolution du financement et oriente les politiques publiques afin de prendre des décisions éclairées et atteindre le développement durable. 
+
+
+# 3. Bref Résumé du Projet
+
+Ce projet analyse la dynamique du financement climatique en Afrique, en examinant la répartition des fonds (adaptation et mitigation) au sein de quatre secteurs. Les données secondaires, collectées sur le site de l'OCDE, révèlent que le secteur de l'agriculture a reçu plus de financements en 2021 pour la lutte contre le changement climatique. Ces financements estimés à plus de 500.000 millions de dollars par pays de l’Afrique francophone proviennent essentiellement des états membres du CAD et banques de développement multilatéral. Une analyse temporelle plus approfondie sera réalisée en deuxième année pour mieux orienter les projets d'appel en quête  de financement.
+
+
+# 4. Objectifs du Projet
+## 4.1 Objectif Général
+
+L’objectif principal de cette étude est d’analyser la répartition du financement climatique entre secteurs prioritaires, afin de guider les décideurs publics-privés dans la prise de décisions sur les données éclairées.
+
+## 4.2 Objectifs Spécifiques
+
+Plus spécifiquement, il s’est agi de :   
+- Faire une cartographie des montants de financement climatique (adaptation et mitigation) alloués en Afrique à des secteurs spécifiques (énergie; agriculture, foresterie et pisciculture; eau et protection de l'environnement);  
+- Analyser les sources des financements (bilatérales, multilatérales, privées) pour les secteurs de l'énergie; l'agriculture, foresterie et pisciculture; l'eau et la protection de l'environnement en Afrique de l’Ouest francophone (AOF);   
+- Ressortir les plus grands donateurs pour les secteurs de l'énergie; l'agriculture, foresterie et pisciculture; l'eau et la protection de l'environnement en Afrique de l’Ouest francophone. 
+
+
+
+# 5. Méthodologie  
+
+## 5.1 Outils et Techniques de Collecte de Données
+
+•	Outils utilisés   
+L'outil utilisé pour la collecte des données a été le site de the Organization for Economic Cooperation and Development (OECD) https://www.oecd.org/fr/data.html pour le téléchargement des données de panel sur la finance climatique en Afrique de l'année 2000 à l'année 2021.
+
+•	Techniques appliquées
+
+L'Excel a été téléchargé sur le site de l'OECD https://webfs.oecd.org/climate/DonorPerspective/CRDF-DP-AGG-OBJ-2022.xlsx.
+
+## 5.2 Collecte, Traitement et Analyse des Données 
+ 
+•	Collecte des données    
+Les données secondaires utilisées dans le cadre de cette étude ont été collectées sur l’OECD. Les données représentent une base de données de 38 variables dont 8 quantitatives et 30 qualitatives. Ces données sont composées de 58165 observations allant de 2000-2021.  
+
+•	Traitement des données   
+Les données utilisées pour l’analyse ont été réduites à 2073 observations en se focalisant sur l’Afrique et sur l’année 2021 pour simplifier l’analyse. Pour éviter certaines erreurs dans le codage, certaines variables ont été renommées et les lignes vides ont été supprimé. Le traitement des données a été fait sur la base des cours reçus et du logiciel R.  
+
+•	Analyse des données   
+L’analyse des données a été réalisé à l’aide d’une vingtaine de packages du logiciel R répartis en trois parties suivant les objectifs spécifiques suivant les secteurs de l’agriculture, l’eau, l'énergie et la protection de l’environnement:  
+Objectif spécifique 1 : une carte de l’Afrique a été réalisée par secteur;  
+Objectif spécifique 2 : un histogramme a été réalisé par secteur pour présenter le nombre de financements reçu par pays de l’AOF;  
+Objectif spécifique 3 : un histogramme a été réalisé par secteur pour comprendre la répartition des donateurs par pays de l’AOF.
+
+
+# 6. Résultats
+## 6.1 Principales Informations Dérivées de l’Analyse des Données
+
+### Description des variables utilisées  
+
+```{r, include=FALSE}
+# To have data for Sda_Afrique pour 2021
+library(readxl)
+library(tidyr)
+library(openxlsx)
+Sda_Afriq <- read.xlsx("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Sda_Afriq.xlsx")
+
+# voir le nom des variables
+names(Sda_Afriq)
+
+summary(Sda_Afriq)
+
+# convertir en facteur
+
+Sda_Afriq$'Provider.Type' <- as.factor(Sda_Afriq$'Provider.Type')
+Sda_Afriq$Provider<- as.factor(Sda_Afriq$Provider)
+Sda_Afriq$'Provider.(detailed)'<- as.factor(Sda_Afriq$'Provider.(detailed)')
+Sda_Afriq$'Agency.Code'<- as.factor(Sda_Afriq$'Agency.Code')
+Sda_Afriq$'Extending.Agency'<- as.factor(Sda_Afriq$'Extending.Agency')
+Sda_Afriq$'CRS.Identification.N°'<- as.factor(Sda_Afriq$'CRS.Identification.N°')
+Sda_Afriq$'Donor.project.N°'<- as.factor(Sda_Afriq$'Donor.project.N°')
+Sda_Afriq$Recipient<- as.factor(Sda_Afriq$Recipient)
+Sda_Afriq$'Sector'<- as.factor(Sda_Afriq$'Sector')
+Sda_Afriq$'Sub-sector'<- as.factor(Sda_Afriq$'Sub-sector')
+Sda_Afriq$'Financial.Instrument'<- as.factor(Sda_Afriq$'Financial.Instrument')
+Sda_Afriq$'Climate.objective.(applies.to.Rio-marked.data.only).or.climate.component'<- as.factor(Sda_Afriq$'Climate.objective.(applies.to.Rio-marked.data.only).or.climate.component')
+Sda_Afriq$'Recipient.Income.Group.(OECD.Classification)'<- as.factor(Sda_Afriq$'Recipient.Income.Group.(OECD.Classification)')
+Sda_Afriq$'Concessionality'<- as.factor(Sda_Afriq$'Concessionality')
+Sda_Afriq$'Climate.objective.(applies.to.Rio-marked.data.only).or.climate.component'<- as.factor(Sda_Afriq$'Climate.objective.(applies.to.Rio-marked.data.only).or.climate.component')
+Sda_Afriq$'Recipient.Region'<- as.factor(Sda_Afriq$'Recipient.Region')
+#Sda_Afriq$'Adaptation.objective.(applies.to.Rio-marked.data.only)'<- as.factor(Sda_Afriq$' Adaptation.objective.(applies.to.Rio-marked.data.only)')
+#Sda_Afriq$'Development.Cooperation.Modality'<- as.factor(Sda_Afriq$'Development.Cooperation.Modality')
+Sda_Afriq$'Adaptation.objective.(applies.to.Rio-marked.data.only)'<- as.numeric(Sda_Afriq$'Adaptation.objective.(applies.to.Rio-marked.data.only)')
+Sda_Afriq$'Mitigation.objective.(applies.to.Rio-marked.data.only)'<- as.numeric(Sda_Afriq$'Mitigation.objective.(applies.to.Rio-marked.data.only)')
+
+
+summary(Sda_Afriq)
+
+# Extraire les données pour plusieurs pays et une seule année
+library(dplyr)
+Afrique <- Sda_Afriq %>%
+  filter(`Recipient.Region` %in% c("Africa", "North of Sahara","South of Sahara"), year == 2021)
+
+summary(Afrique)
+
+```
+
+
+Les financements sont alloués soit pour l’adaptation aux changements climatiques soit pour la lutte contre les changements climatiques. Cinq donateurs ont été relevés dans la base de données: les états membres du DAC, les états non membres du DAC, les banques de développement multilateral, les donateurs privés et autres donateurs multilatéraux. Plusieurs secteurs sont concernés par les financements mais les plus importants sont le secteur de l’Eau; de l’Energie; de l’Agriculture, la foresterie et la pisciculture;  et de la protection de l’environnement. Trois régions sont concernées par ces données : Afrique entière, le Nord du Sahara et le Sud du Sahara.  
+      
+#### Tableau 1:  Description des variables 
+
+
+| Variables          | Modalités                     | Fréquence | Moyenne | Minimum | Maximum |
+|--------------------|-------------------------------|-----------|---------|---------|---------|
+| Adaption 2021      |    0                          | 0         | 1776.2  |  0      | 619304.2| 
+| Mitigation 2021    |    0                          | 0         | 1657.6  |  0      | 624408.7|
+| Type de donateurs  | Membres du DAC                | 7674      |  0      |  0      |  0      |
+|                    | Banque multilatérale de dév   | 1303      |  0      |  0      |  0      |
+|                    | Non membres du DAC            | 47        |  0      |  0      |  0      |
+|                    | Autres multilatéraux          | 522       |  0      |  0      |  0      |
+|                    | Private donor                 | 246       |  0      |  0      |  0      |
+| Régions            | Afrique                       | 2359      |  0      |  0      |  0      |
+|                    | Nord  du Sahara               | 412       |  0      |  0      |  0      |
+|                    | Sud   du Sahara               | 7021      |  0      |  0      |  0      |
+| Concessionalité    | Concessionel et developpement | 9281      |  0      |  0      |  0      |
+|                    | Non concessionel              | 265       |  0      |  0      |  0      |
+|                    | Concessionalité Privée        | 246       |  0      |  0      |  0      |
+| Secteurs           | Eau                           | 891       |  0      |  0      |  0      |
+|                    | Energie                       | 687       |  0      |  0      |  0      |
+|                    | Agriculture                   | 2333      |  0      |  0      |  0      |
+|                    | Protection de l'environnement | 738       |  0      |  0      |  0      |
+|                    | Autres                        | 5143      |  0      |  0      |  0      |
+    
+Le graphe 1 montre l'évolution du financement total reçu en Afrique de l'année 2000 à celle 2021 où les financements ont évolué de presque 0 à plus de 1.2 millions de mille de USD.
+
+#### Graphe 1:  Evolution du financement climatique de 2000-2021 en Afrique
+
+```{r, warning= FALSE, message= FALSE, echo=FALSE}
+library(dplyr)
+FinanClimat <- Sda_Afriq %>%
+  select("year", "Mitig2021", "Adapt2021")
+
+FinanClimat$Totfinan <- FinanClimat$Mitig2021 + FinanClimat$Adapt2021
+
+#FinanClimat1 <- data.frame(
+#  x = c("FinanClimat$year"),
+#  y = c("FinanClimat$Mitig2021", "FinanClimat$Adapt2021", "FinanClimat$Totfinan"),
+#   curve = rep(c("Mitig2021", "Adapt2021", "Totfinan"))
+#)
+
+library(ggplot2)
+ggplot(FinanClimat, aes(x = year, y = Totfinan)) +
+  geom_line (color = "blue", size = 1) +  # Trace une ligne bleue
+  labs(title = "Évolution du Financement Climatique en Afrique",
+       x = "Année",
+       y = "Total Financement",
+       color = "courbes") +
+  theme_minimal()
+  
+#########
+library(ggthemes)
+#ggplot (FinanClimat) +
+#  geom_line (aes(x = year, y = Mitig2021), color = "blue", size = 1, linetype = #"solid") +
+#  geom_line (aes(x = year, y = Adapt2021), color = "red", size = 1, linetype = #"solid") +
+#  geom_line (aes(x = year, y = Totfinan), color = "green", size = 1, linetype = #"solid")+
+#  labs(title = "Évolution du Financement Climatique en Afrique",
+#       x = "Année",
+ #      y = "Total Financement") +
+#  theme_minimal() +
+#  scale_color_brewer(direction =-1) +
+# geom_point(size = 2.5)
+```
+
+
+## 6.2 Format de Présentation des Résultats
+
+### 6.2.1. Cartographie des montants de financement climatique (adaptation et mitigation) alloués à des secteurs spécifiques (énergie, agriculture, eau, environnement).
+
+```{r, include=FALSE}
+#### Adaptation pour toute l'Afrique 2021
+
+names(Afrique)[names(Afrique) == "Adaptation-related.development.finance.-.Commitment.-.2021.USD.thousand"] <- "Adaption"
+
+names(Afrique)[names(Afrique) == "Mitigation-related.development.finance.-.Commitment.-.2021.USD.thousand"] <- "Mitigation"
+
+Afrique$Financ2021 <- Afrique$Adapt2021 + Afrique$Mitig2021
+
+summary(Afrique)
+```
+
+#### 6.2.1.1 Financement de l'eau de 2021 pour l'Afrique  
+
+Pour l'Afrique, le Nigéria a reçu plus de financement pour l'eau. L'Egypte, le Niger et le Rwanda en ont reçu moyennement. Les financements ne dépassant pas en moyenne 20 millions de dollars.
+
+```{r, include=FALSE}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+# Pour sélectionner des modalités au sein de la variable, 
+wataf<- Afrique%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(wataf)
+
+wat_afri <- filter(wataf, "Financ2021" >= 0)
+
+names(wat_afri)[names(wat_afri) == "Recipient"] <- "region"
+
+wat_afrif <- left_join(worldgood, wat_afri, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+wat_afri_f <- wat_afrif %>% 
+  drop_na(c(Financ2021))
+
+wat_afri_f <- filter(wat_afri_f, "Financ2021" > 0)
+
+#######################################
+Mfinanc2021 <- wat_afri_f%>%
+  group_by(region)%>%
+  summarise(moyenne_Financ2021 = mean(Financ2021, na.rm = TRUE)) 
+
+w_afrif <- left_join(worldgood, Mfinanc2021, by = "region")
+
+w_afri_f <- w_afrif %>% 
+  drop_na(c(moyenne_Financ2021))
+
+summary(wat_afri_f$Financ2021)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#################vrai
+ggplot(data = w_afri_f, aes(x = long, y = lat, group = group, fill = moyenne_Financ2021)) + theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+    scale_fill_continuous(high = "#00AFBB"  , low = "#FFFFFF") +
+  labs(title = "Financement de l'eau en Afrique en 2021",
+        caption = "Source: Nüance-R")
+```
+
+#### 6.2.1.2. Financement de l'agriculture de 2021 pour l'Afrique 
+
+Les financements de l’agriculture en 2021 avoisinent en moyenne 20 millions de dollars. Le Nigéria et le Maroc sont les pays ayant bénéficiés des plus grands financements agricoles.
+
+```{r, include=FALSE}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+# Pour sélectionner des modalités au sein de la variable, 
+agraf<- Afrique%>%
+  filter(Sector %in% c("III.1. Agriculture, Forestry, Fishing"))
+summary(agraf)
+
+agr_afri <- filter(agraf, "Financ2021" >= 0)
+
+names(agr_afri)[names(agr_afri) == "Recipient"] <- "region"
+
+agr_afrif <- left_join(worldgood, agr_afri, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+agr_afri_f <- agr_afrif %>% 
+  drop_na(c(Financ2021))
+
+agr_afri_f <- filter(agr_afri_f, "Financ2021" > 0)
+
+#######################################
+Mafinanc2021 <- agr_afri_f%>%
+  group_by(region)%>%
+  summarise(moyenne_Financ2021 = mean(Financ2021, na.rm = TRUE)) 
+
+a_afrif <- left_join(worldgood, Mafinanc2021, by = "region")
+
+a_afri_f <- a_afrif %>% 
+  drop_na(c(moyenne_Financ2021))
+
+
+summary(agr_afri_f$Financ2021)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data = a_afri_f, aes(x = long, y = lat, group = group, fill = moyenne_Financ2021)) + theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+  scale_fill_continuous(high = "#008000"  , low = "#FFFFFF") +
+  labs(title = "Financement de l'agriculture en Afrique en 2021",
+        caption = "Source: Nüance-R")
+
+```
+
+#### 6.2.1.3. Financement de l'énergie de 2021 pour l'Afrique   
+
+Les financements énergétiques en Afrique ont été reçu en majorité par le Soudan et ne dépasse pas en moyenne 115 millions de dollars.
+
+```{r, include=FALSE}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+# Pour sélectionner des modalités au sein de la variable, 
+enaf<- Afrique%>%
+  filter(Sector %in% c("II.3. Energy"))
+summary(enaf)
+
+en_afri <- filter(enaf, "Financ2021" >= 0)
+
+names(en_afri)[names(en_afri) == "Recipient"] <- "region"
+
+en_afrif <- left_join(worldgood, en_afri, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+en_afri_f <- en_afrif %>% 
+  drop_na(c(Financ2021))
+
+en_afri_f <- filter(en_afri_f, "Financ2021" > 0)
+
+#######################################
+Menfinanc2021 <- en_afri_f%>%
+  group_by(region)%>%
+  summarise(moyenne_Financ2021 = mean(Financ2021, na.rm = TRUE)) 
+
+ener_afrif <- left_join(worldgood, Menfinanc2021, by = "region")
+
+ener_afri_f <- ener_afrif %>% 
+  drop_na(c(moyenne_Financ2021))
+
+
+summary(en_afri_f$Financ2021)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data = ener_afri_f, aes(x = long, y = lat, group = group, fill = moyenne_Financ2021)) + theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+  scale_fill_continuous(high = "#FF0000"  , low = "#FFFFFF") +
+  labs(title = "Financement de l'énergie en Afrique en 2021",
+        caption = "Source: Nüance-R")
+```
+
+
+#### 6.2.1.4. Financement de la protection de l'environnement de 2021 pour l'Afrique 
+
+Les financements pour la protection de l’environnement se sont limités par pays en moyenne à 11 millions de dollars au cours de l’année 2021. La Tunisie, le Tchad et le Togo sont les pays de l’Afrique ayant reçu plus de financements pour la protection de l’environnement. 
+
+```{r, include=FALSE}
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(readr)
+#library(rgdal)
+library(sp)
+library(stringr)
+library(tidyverse)
+library(broom)
+library(readxl)
+library(tidyr)
+library(openxlsx)
+
+#Pour charger la database world
+worldgood <- map_data("world")
+
+# Pour sélectionner des modalités au sein de la variable, 
+envaf<- Afrique%>%
+  filter(Sector %in% c("IV.1. General Environment Protection"))
+summary(envaf)
+
+env_afri <- filter(envaf, "Financ2021" >= 0)
+
+names(env_afri)[names(env_afri) == "Recipient"] <- "region"
+
+env_afrif <- left_join(worldgood, env_afri, by = "region")
+
+# Pour enlever les lignes vides de la variable Adaptation
+library(tidyr)
+env_afri_f <- env_afrif %>% 
+  drop_na(c(Financ2021))
+
+env_afri_f <- filter(env_afri_f, "Financ2021" > 0)
+
+#######################################
+Menvfinanc2021 <- env_afri_f%>%
+  group_by(region)%>%
+  summarise(moyenne_Financ2021 = mean(Financ2021, na.rm = TRUE)) 
+
+envi_afrif <- left_join(worldgood, Menvfinanc2021, by = "region")
+
+envi_afri_f <- envi_afrif %>% 
+  drop_na(c(moyenne_Financ2021))
+
+
+summary(env_afri_f$Financ2021)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data = envi_afri_f, aes(x = long, y = lat, group = group, fill = moyenne_Financ2021)) + theme_void() +
+    theme(legend.position = "right") +
+  geom_polygon(color = "black", size = 0.8) +
+  scale_fill_continuous(high = "#228B22"  , low = "#FFFFFF") +
+  labs(title = "Financement de la protection de l'environnement en Afrique en 2021",
+        caption = "Source: Nüance-R")
+```
+
+
+### 6.2.2. Analyse les sources des financements (bilatérales, multilatérales, privées)
+
+##### 6.2.2.1. Sources de financement de l'eau de 2021 pour AOF
+
+```{r, include=FALSE}
+# To have data for Finance pour 2021
+library(readxl)
+library(tidyr)
+library(openxlsx)
+Finance <- read.xlsx("C:/Users/Roxène/Documents/Rox/Séminaire/Sciences_donnees_Afrique/Projet_new/investment_climate/Finance.xlsx")
+
+#Summary(Finance)
+```
+
+
+```{r, include=FALSE}
+#renommer une variable
+names(Finance)[names(Finance) == "Sector.(detailed)"] <- "Sector"
+names(Finance)[names(Finance) == "Recipient"] <- "region"
+
+Finance$Sector <- as.factor(Finance$Sector)
+
+# Pour sélectionner des modalités au sein de la variable, 
+watfi<- Finance%>%
+  filter(Sector %in% c("I.4. Water Supply & Sanitation"))
+summary(watfi)
+
+wat_finance <- filter(watfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+```
+
+Le Burkina-Faso concentre plus du quart (27%) des donateurs pour le financement du secteur de l'eau contrairement au Guinée Bissau qui n'en a presque pas. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+ggplot(data=watfi, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "dodge", fill= "blue", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes
+  labs(title = "Histogramme des types de donateurs par rapport au pays",
+       x = "Pays de l'Afrique",
+       y = "Fréquence") +
+  theme_minimal()
+```
+
+
+```{r, include=FALSE}
+ggplot(data=wat_afri, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "dodge", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes
+  labs(title = "Histogramme des types de donateurs par rapport au pays",
+       x = "Pays de l'Afrique",
+       y = "Fréquence") +
+  theme_minimal()
+
+ggplot(data= wat_afri, aes(x = 'Provider type', fill = region)) +
+  geom_bar(position = "stack") +
+  labs(title = "Histogramme de Provider Type par rapport au pays",
+       x = "Partenaires techniques et financiers",
+       y = "Fonds pour le financement de l'eau ",
+       fill = "region") +
+  theme_minimal()
+```
+
+```{r, include=FALSE}
+library(ggplot2)
+
+##PROVIDER DAC
+watdac<- wat_finance%>%
+  filter(Provider.Type%in% c("DAC member"))
+summary(watdac)
+
+ggplot(data=watdac, aes(x = region, fill = 'Provider.Type')) +
+  geom_bar(position = "stack", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Histogramme provider par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence ",
+       fill = "providerdac") +
+  theme_minimal()
+
+##PROVIDER Bank
+watbank<- wat_finance%>%
+  filter(Provider.Type%in% c("Multilateral development bank"))
+summary(watbank)
+
+ggplot(data=watbank, aes(x = region, fill = 'Provider.Type')) +
+  geom_bar(position = "stack", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Histogramme provider par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence ",
+       fill = "providerbank") +
+  theme_minimal()
+
+##PROVIDER other
+watoth<- wat_finance%>%
+  filter(Provider.Type%in% c("Other multilateral"))
+summary(watoth)
+
+ggplot(data=watoth, aes(x = region, fill = 'Provider.Type')) +
+  geom_bar(position = "stack", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Histogramme provider par rapport au pays",
+       x = "Pays de l'AOF",
+       y = "Fréquence ",
+       fill = "provideroth") +
+  theme_minimal()
+
+ggplot(data= wat_finance, aes(x = 'Provider.Type', fill = 'Provider.Type')) +
+  geom_bar(position = "stack", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Financement de l'eau suivant le type de donateur",
+       x = "Type de donateur",
+       y = "Fréquence ",
+       fill = "Provider") +
+  theme_minimal()
+
+```
+
+
+##### 6.2.2.2. Sources de financement de l'agriculture de 2021 pour AOF
+
+```{r, include=FALSE}
+#renommer une variable
+names(Finance)[names(Finance) == "Sector.(detailed)"] <- "Sector"
+names(Finance)[names(Finance) == "Recipient"] <- "region"
+
+Finance$Sector <- as.factor(Finance$Sector)
+
+# Pour sélectionner des modalités au sein de la variable, 
+agrfi<- Finance%>%
+  filter(Sector %in% c("III.1. Agriculture, Forestry, Fishing"))
+summary(agrfi)
+
+agr_finance <- filter(agrfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+```
+
+Le Burkina Faso, le Mali et le Sénégal ont reçu plus de financements dans le secteur de l’agriculture.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+ggplot(data=agr_finance, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "dodge", fill= "green", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes
+  labs(title = "Histogramme des types de donateurs par rapport au pays pour le secteur agriculture",
+       x = "Pays de l'AOF",
+       y = "Fréquence") +
+  theme_minimal()
+```
+
+
+##### 6.2.2.3. Sources de financement de l'énergie de 2021 pour AOF
+
+```{r, include=FALSE}
+#renommer une variable
+names(Finance)[names(Finance) == "Sector.(detailed)"] <- "Sector"
+names(Finance)[names(Finance) == "Recipient"] <- "region"
+
+Finance$Sector <- as.factor(Finance$Sector)
+
+# Pour sélectionner des modalités au sein de la variable, 
+enfi<- Finance%>%
+  filter(Sector %in% c("II.3. Energy"))
+summary(enfi)
+
+en_finance <- filter(enfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+```
+
+Le Burkina-Faso, le Niger et le Sénégal reçoivent plus de financement énergétique en 2021.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+ggplot(data=en_finance, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "dodge", fill= "red", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes
+  labs(title = "Histogramme des types de donateurs par rapport au pays pour le secteur de l'énergie",
+       x = "Pays de l'AOF",
+       y = "Fréquence") +
+  theme_minimal()
+```
+
+
+#### 6.2.2.4. Financement de la protection de l’environnement de 2021 pour l’Afrique
+
+```{r, include=FALSE}
+#renommer une variable
+names(Finance)[names(Finance) == "Sector.(detailed)"] <- "Sector"
+names(Finance)[names(Finance) == "Recipient"] <- "region"
+
+Finance$Sector <- as.factor(Finance$Sector)
+
+# Pour sélectionner des modalités au sein de la variable, 
+envfi<- Finance%>%
+  filter(Sector %in% c("IV.1. General Environment Protection"))
+summary(envfi)
+
+env_finance <- filter(envfi, "Adaptation-related development finance - Commitment - 2021 USD thousand" >= 0)
+
+```
+
+Sur les huit pays francophones de l’Afrique de l’Ouest, le Sénégal, le Burkina-Faso et la Côte d’Ivoire constituent les trois pays qui engrangent le plus de donateurs. Vient en quatrième position, le Bénin. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+ggplot(data=env_finance, aes(x = region, fill = 'Provider type')) +
+  geom_bar(position = "dodge", fill= "yellow", color = "black") +  # Barres côte à côte
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes
+  labs(title = "Histogramme des types de donateurs par rapport au pays pour le secteur de la protection de l'environnement",
+       x = "Pays de l'AOF",
+       y = "Fréquence") +
+  theme_minimal()
+```
+
+
+### 6.2.3. Analyse des plus grands donateurs pour les secteurs de l’agriculture, de l’énergie, de l’eau et de l’environnement en Afrique de l’Ouest francophone.
+
+La majorité des financements pour les quatre secteurs provient des états membres du CAD (France, Canada, Belgique, Etats-Unis, Allemagne, Espagne). Pour les secteurs de l’eau; de l’agriculture, la foresterie et la pisciculture; la protection de l'environnement et de l’énergie, les financements des banques de développement multilatérale ne sont pas à négliger.  
+
+#### 6.2.3.1. Histogramme des types de donateurs par rapport au pays pour le secteur eau
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data= wat_finance, aes(x = Provider.Type)) +
+  geom_histogram(stat = "count", fill="blue", color= "black")+
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Financement de l'eau suivant le type de donateur",
+       x = "Type de donateur",
+       y = "Fréquence ",
+       fill = "Provider") +
+  theme_minimal()
+```
+
+#### 6.2.3.2. Histogramme des types de donateurs par rapport au pays pour le secteur agricole
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data= agr_finance, aes(x = Provider.Type)) +
+  geom_histogram(stat = "count", fill="green", color= "black")+
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Financement de l'agriculture suivant le type de donateur",
+       x = "Type de donateur",
+       y = "Fréquence ",
+       fill = "Provider") +
+  theme_minimal()
+```
+
+#### 6.2.3.3. Histogramme des types de donateurs par rapport au pays pour le secteur de l'énergie
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data= en_finance, aes(x = Provider.Type)) +
+  geom_histogram(stat = "count", fill="red", color= "black")+
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Financement de l'énergie suivant le type de donateur",
+       x = "Type de donateur",
+       y = "Fréquence ",
+       fill = "Provider") +
+  theme_minimal()
+```
+
+#### 6.2.3.4. Histogramme des types de donateurs par rapport au pays pour le secteur environnement
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data= env_finance, aes(x = Provider.Type)) +
+  geom_histogram(stat = "count", fill="yellow", color= "black")+
+  geom_text(stat = 'count', aes(label = ..count..), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5,  # Ajuster la position des étiquettes
+            color = "black") +  # Ajouter les étiquettes +
+  labs(title = "Financement de la protection de l'environnement suivant le type de donateur",
+       x = "Type de donateur",
+       y = "Fréquence ",
+       fill = "Provider") +
+  theme_minimal()
+```
+
+# 7. Conclusion et Perspectives
+
+•	Impact sociétal   
+Le but de notre projet est de pouvoir fournir des conseils aux différentes Organisations Non Gouvernementales (ONG), aux personnes privées et aux gouvernements afin qu’ils puissent disposer d’assez d’informations pour choisir les différents secteurs dans lesquels ils doivent proposer des idées de projet pour bénéficier de financement climatique. Il ressort des analyses que les états membres de la DAC sont ceux qui financent le plus les pays de l’Afrique de l’Ouest francophone. Les financements les plus élevés sont ceux du secteur agricole et avoisinent les 500.000 de dollars en 2021. Le Burkina Faso est le pays de l’Afrique francophone qui a reçu plus de financement tout secteur considéré.  
+
+•	Orientations futures   
+Une analyse des instruments financiers (prêts, subventions, investissements en capital) sera fait  pour l'année prochaine. Au cours de cette même année, l'équipe prévoit réaliser des régressions afin de comprendre ce qui influence les donateurs par rapport à financer dans chaque pays.  
+L'équipe pense aussi utiliser en deuxième année shiny pour rendre dynamique ces cartes et graphes au niveau de l'Afrique au fil des ans pour montrer l’évolution du financement climatique dans chaque pays. Ce qui facilitera la lecture du financement climatique.
+
+# 8. Difficultés Rencontrées et Solutions Employées
+
+•	Difficultés rencontrées  
+L'équipe a eu du mal à lier le R studio et Github (difficulté à retrouver le fichier git.exe sur les ordinateurs);  
+Les données récentes sur le financement climatique en Afrique s'arrête en 2021;  
+L'équipe n'a pas pu compiler les différents codes pour synchroniser le rapport sur Github.
+
+
+
+•	Solutions employées  
+Des séances de recyclage avec l'équipe de formation, certaines chargés de formation et entre nous pour essayer de surmonter les difficultés;  
+Des analyses ont été faites sur les données obtenues au niveau de l'OECD sur l'année 2021;  
+Les différents codes ont été envoyés par Github et le rapport a été compilé pour l'obtention du rapport final.
+
+
+# Références bibliographiques
+
+https://www.oecd.org/fr/data.html  
+
+https://webfs.oecd.org/climate/DonorPerspective/CRDF-DP-AGG-OBJ-2022.xlsx
+
+
+
+
